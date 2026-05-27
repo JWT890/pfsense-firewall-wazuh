@@ -26,3 +26,13 @@ Then go type the new address of 192.168.56.2 in a browser:
 Click advanced and proceed. 
 Then you will see the login screen and enter in the admin creds and get into pfsense:   
 ![alt text](image-6.png)    
+Then click next and set up the general information for pfsense, for hostname put something like lab-firewall, domain to lab.local, primary DNS to 1.1.1.1 and secondary to 8.8.8.8. Then hit next.  
+For time server set to Central Time or Chicago and hit next.    
+Then for WAN Interface section leave it as DHCP and scroll down to hit next.    
+Then for LAN Interface section leave it as it and hit next. 
+Then set the password and hit next. and for step 7 reload it. After a few seconds:  
+![alt text](image-7.png)    
+It is finished and hit finish and be taken to the main page:    
+![alt text](image-8.png)    
+Then to test connectivity go to Diagnostics -> Ping and for hostname type 1.1.1.1 and hit ping: 
+![alt text](image-9.png)    
