@@ -43,5 +43,13 @@ Website by going to Interfaces -> VLANs:
 ![alt text](image-11.png)
 Or VM by pressing option 1:  
 ![alt text](image-12.png)   
-In this instance, lets use the Webiste. 
+In this instance, lets use the Webiste. Click on add and see this screen:   
+![alt text](image-13.png)   
+Change the parent interface to LAN, change VLAN tag to 10, keep priority at 0 and set Description to MGMT for for the first VLAN and hit save.  
+Then set up the other VMs like below:    
+![alt text](image-14.png)   
+
+Then lets move on the Firewall -> Aliases and see this screen:  
+![alt text](image-15.png)
+
 
