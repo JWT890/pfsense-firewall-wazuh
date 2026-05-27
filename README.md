@@ -36,3 +36,12 @@ It is finished and hit finish and be taken to the main page:
 ![alt text](image-8.png)    
 Then to test connectivity go to Diagnostics -> Ping and for hostname type 1.1.1.1 and hit ping: 
 ![alt text](image-9.png)    
+![alt text](image-10.png)   
+
+Then its time to set up a few VLANs, which can be done in either VM or website: 
+Website by going to Interfaces -> VLANs:    
+![alt text](image-11.png)
+Or VM by pressing option 1:  
+![alt text](image-12.png)   
+In this instance, lets use the Webiste. 
+
