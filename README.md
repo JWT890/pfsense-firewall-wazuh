@@ -12,7 +12,21 @@ After downloading, right click on the file and extract it which will have the is
 Then to go VirtualBox and click on create a new VM with the type set to BSD and FreeBSD 64 bit.  
 RAM set to 1024 MB with 8 gigs of disk space.   
 Then for the adapters, set adapter 1 to lab-wan and 2 to vboxnet0.  
-Then go the downloads folder and find the netgate download and type gunzip and the file to get it unzipped. After that boot into the VM as a iso and configure the settings like wlan, lan and more to get pfsense installed, then click on ok for it to reboot. After it gets done rebooting, go the storage side on VirtualBox and remove the pfsense installer and restart the VM. After a few minutes in the VM, this screen will appear:   
+Then boot up the VM and see the terms screen:   
+![Terms](./images/terms.png)    
+Accept it and continue and see the Welcome to pfSense screen and hit continue to see WAN interface set up:  
+![WAN](./images/wan.png)    
+The first option will be the NAT that was set up lan-wan and hit ok and continue/proceed with the installation and circle back to this: 
+![LAN](./images/lan.png)    
+The LAN will be the host only chosen adapter, hit ok and continue/proceed with the installation and confirm the settings and reach this screen: 
+![Sub](./images/sub.png)    
+Choose the Install CE option and wait a few seconds before getting here:    
+![File](./images/file.png)  
+Keep the default and hit next and get to this:  
+![Disk](./images/disk.png)  
+Then hit OK and it will ask if you want to destory the disk, hit yes and wait a few seconds and for the software version, choose the stable version:    
+![Stable](./images/stable.png)  
+Then hit ok  
 ![Image](./images/image.png)  
 This shows that it installed successfully.  
 Then to change the IP of the LAN since it needs to end in a 2. Start by typing 2 and for the next option press 2:   
