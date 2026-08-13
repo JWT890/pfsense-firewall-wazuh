@@ -65,9 +65,16 @@ In this instance, lets use the Webiste. Click on add and see this screen:
 ![Image13](./images/image-13.png)   
 Change the parent interface to LAN, change VLAN tag to 10, keep priority at 0 and set Description to MGMT for for the first VLAN and hit save.  
 Then set up the other VMs like below:    
-![Image14](./images/image-14.png)   
+![LAN1](./images/lan1.png)  
 
-Then lets move on the Firewall -> Aliases and see this screen:  
-![Image15](./images/image-15.png)
+Then move on to Interfaces -> Assignments to set the assignments:   
+![Assign](./images/assign.png)  
+Click on add for the first one and add the rest like so:    
+![Rest](./images/rest.png)  
+And hit save click the dropdown for Interfaces: 
+![Option](./images/option.png)  
+Click on OPT1 and see this menu:    
+![OPT1](./images/opt1.png)  
+Enable the interface, change the description to MGMT, change the dropdown for IPv4 to Statis IPv4 and set the first IPv4 address to 10.0.10.1/24 and then hit save and repeat for the other ones.
 
 
