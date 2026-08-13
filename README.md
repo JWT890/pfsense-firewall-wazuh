@@ -75,6 +75,11 @@ And hit save click the dropdown for Interfaces:
 ![Option](./images/option.png)  
 Click on OPT1 and see this menu:    
 ![OPT1](./images/opt1.png)  
-Enable the interface, change the description to MGMT, change the dropdown for IPv4 to Statis IPv4 and set the first IPv4 address to 10.0.10.1/24 and then hit save and repeat for the other ones.
-
+Enable the interface, change the description to MGMT, change the dropdown for IPv4 to Statis IPv4 and set the first IPv4 address to 10.0.10.1/24 and then hit save and repeat for the other ones.   
+SERVERS should be 10.0.20.1/24  
+GUEST should be 10.0.30.1/24
+IOT should be 10.0.40.1/24  
+DMZ should be 10.0.50.1/24
+Then head towards Services -> DHCP Server and see this screen:  
+![Server](./images/server.png)  
 
