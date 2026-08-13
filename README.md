@@ -26,8 +26,10 @@ Keep the default and hit next and get to this:
 ![Disk](./images/disk.png)  
 Then hit OK and it will ask if you want to destory the disk, hit yes and wait a few seconds and for the software version, choose the stable version:    
 ![Stable](./images/stable.png)  
-Then hit ok  
-![Image](./images/image.png)  
+Then hit ok and the install screen will pop up for downloading and updating so wait a few minutes then this screen will appear: 
+![Screen](./images/screen.png)  
+Then hit OK and get to the do you want to reboot screen, then go to devices -> optical drives and click on the option to remove the iso from virtual drive and click the option of force umount. Then shut down the VM and turn it back on again to get here:
+![Replace](./images/replace.png)    
 This shows that it installed successfully.  
 Then to change the IP of the LAN since it needs to end in a 2. Start by typing 2 and for the next option press 2:   
 ![Image1](./images/image-1.png)    
