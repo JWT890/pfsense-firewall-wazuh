@@ -82,4 +82,10 @@ IOT should be 10.0.40.1/24
 DMZ should be 10.0.50.1/24
 Then head towards Services -> DHCP Server and see this screen:  
 ![Server](./images/server.png)  
+Click on the MGMT tab and enable the interface and for address pool range for MGMT do 10.0.20.100 - 10.0.0.20.199 and hit save, then repeat for the other respective ones and then hit apply changes.   
+1-99 range will be reserved for static assignments such as IP for the servers, infrastructure with pfsense sitting at 1 while 100-199 serve as the DHCP pool, while 200-254 serve as future use such as a secondary DHCP pool. This helps since we will be able to tell what IP and DHCP is assigned and help speed up analysis during an incident and reporting. So for example 10.0.20.5 might be a static server while 10.0.20.147 will serve as a endpoint that is dynamic. 
+Then go to Firewall dropdown and click on Aliases for this screen:  
+![Firewall](./images/firewall.png)  
+Before adding each respective one. First add the Private Address space, called RFC1918 first, with the description of Private address space, have it as network type with networks of 10.0.0.0 /8, 172.16.0.0 /12, 192.168.0.0 /16. Then hit save and apply changes. Then go to the Rules section and start adding rules for each VLAN like so: 
+![Rules](./images/rules.png)    
 
