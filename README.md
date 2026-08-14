@@ -94,4 +94,9 @@ Then save and move on to SERVERS and set up 2 rules, for the first rule:
 ![Rule1](./images/rule1.png)    
 Then for the second rule:   
 ![Rule2](./images/rule2.png)    
-Then move on to the Guest rule, with the Block above the Allow rule
+Then move on to the Guest rule, with the Block above the Allow rule, any for Protocol, Source of Guest Subnets, for Destination of Address or Alias with the address being RFC1918, checked log and a description of Block Guest to internal networks.  
+For the second guest role, have it set to Pass for Action, protocol set to Any, Source of Guest subnets, destination of any and a description of Guest Internet only    
+![2-Rule](./images/2-rule.png)  
+Next its time to create the IOT rule, with the Action set to block, protocol of any, source of OPT4/IOT subnets, destination of any, log checked, description of IOT fully isolated 
+Next its time to create the DMZ rules.  
+First rule will be a pass, with TCP protocol, source of DMZ subnets with a destination set to SERVERS subnet, dest ports of 22, 80 and 443, log checked and a description of DMZ to SERVERS attack simulation
