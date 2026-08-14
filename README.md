@@ -88,4 +88,10 @@ Then go to Firewall dropdown and click on Aliases for this screen:
 ![Firewall](./images/firewall.png)  
 Before adding each respective one. First add the Private Address space, called RFC1918 first, with the description of Private address space, have it as network type with networks of 10.0.0.0 /8, 172.16.0.0 /12, 192.168.0.0 /16. Then hit save and apply changes. Then go to the Rules section and start adding rules for each VLAN like so: 
 ![Rules](./images/rules.png)    
-
+THen click on add for MGMT and have the following set up:   
+![MGMT](./images/mgmt.png)  
+Then save and move on to SERVERS and set up 2 rules, for the first rule:    
+![Rule1](./images/rule1.png)    
+Then for the second rule:   
+![Rule2](./images/rule2.png)    
+Then move on to the Guest rule, with the Block above the Allow rule
