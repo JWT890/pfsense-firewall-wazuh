@@ -99,4 +99,7 @@ For the second guest role, have it set to Pass for Action, protocol set to Any, 
 ![2-Rule](./images/2-rule.png)  
 Next its time to create the IOT rule, with the Action set to block, protocol of any, source of OPT4/IOT subnets, destination of any, log checked, description of IOT fully isolated 
 Next its time to create the DMZ rules.  
-First rule will be a pass, with TCP protocol, source of DMZ subnets with a destination set to SERVERS subnet, dest ports of 22, 80 and 443, log checked and a description of DMZ to SERVERS attack simulation
+First rule will be a pass, with TCP protocol, source of DMZ subnets with a destination set to SERVERS subnet, dest ports set to custom with a setting that has 22 80 and 443, log checked and a description of DMZ to SERVERS attack simulation, then save. 
+Second rule will be a allow, protocol set to ICMP, source of DMZ subnets with a desitination set to SERVERs subnet, log checked and a description of DMZ ICMP to SERVERS.   
+Third Rule will be a block, with any protocol, source of DMZ subnets with a destination set to any, log checked, and a description of DMZ default deny. 
+Then hit apply changes after saving each
