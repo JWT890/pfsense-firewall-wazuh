@@ -126,4 +126,15 @@ Save it and then type systemctl restart networking and then /sbin/bridge vlan sh
 ![Show2](./images/show2.png)    
 
 # Monitoring
+For the monitoring phase it will be a combination of Suricata, ntopng, pfBlockerNG-devel, and Sysmon    
+Go to pfsense -> System -> Package Manager -> Available Packages and get to here:   
+![Package](./images/package.png)    
+First install ntopng through the search bar and see this:   
+![NTO](./images/nto.png)    
+Click install and wait for it to install, then Suricata next, wait for it, then install pfBlockerNG-devel and when done check installed packages:   
+![Install](./images/install.png)    
+Then click on Services and notice that Suricata appears in it:  
+![Suricata](./images/suricata.png)  
+Click on it and go to Global Settings page: 
+![Global](./images/global.png)  
 
