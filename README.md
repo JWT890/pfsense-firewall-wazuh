@@ -103,3 +103,27 @@ First rule will be a pass, with TCP protocol, source of DMZ subnets with a desti
 Second rule will be a allow, protocol set to ICMP, source of DMZ subnets with a desitination set to SERVERs subnet, log checked and a description of DMZ ICMP to SERVERS.   
 Third Rule will be a block, with any protocol, source of DMZ subnets with a destination set to any, log checked, and a description of DMZ default deny. 
 Then hit apply changes after saving each
+
+# Linux Switch
+Debian Linux download: https://cdimage.debian.org/cdimage/archive/12.0.0/amd64/iso-cd/. 
+Linux Switch set up:    
+2 GB of RAM
+20 GB of Space 
+Network Adapter 1 set to VirtualBox Host-Only Ethernet Adapter so it matches. Name the VM Linux-LabSwitch and go through the installation process but when it asks for a mirror say no and continue and uncheck any options except SSH server and system utilties:  
+![Process](./images/process.png)    
+Make sure to have Network Adapter 2 on during installation for internet access and then login as root after logging by typing su and running ping -c 3 8.8.8.8 like so: 
+![Ping](./images/ping.png)  
+After confirming run apt update && apt install bridge-utils -y and wait for the installation.   
+Then run ip link add br0 type bridge,   
+ip link set br0 type bridge vlan_filtering 1,   
+ip link set enp0s3 master br0,  
+bridge vlan add dev enp0s3 vid 10-50 trunk and if this command on this line doesn't work, rerun apt update && apt install bridge-utils -y and which bridge to see which one and if that returns nothing run:    
+/sbin/bridge vlan add dev enp0s3 vid 10-50 trunk and then /sbin/bridge vlan show:   
+![Show](./images/show.webp) 
+Which shows the bridge is working on the trunked port and to make it permanent run echo 'export PATH=$PATH:/sbin:/usr/sbin' >> /root/.bashrc and then to save for after reboots type nano /etc/network/interfaces and add this at the end of it:    
+![Show1](./images/show1.png)    
+Save it and then type systemctl restart networking and then /sbin/bridge vlan show to verify:   
+![Show2](./images/show2.png)    
+
+# Monitoring
+
