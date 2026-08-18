@@ -167,3 +167,18 @@ From looking over this part alone:
 Shows that over 17,000 IPs already have been blocked with the firewall enabled
 
 # Wazuh
+For the Wazuh SIEM setup:   
+Linux, Debian   
+RAM: 8192   
+80 GB of Space and several processors   
+Boot Order keep all and have adapter 1 set to host only like the switch and pfsense and adapter 2 set to NAT. Have an Ubuntu iso in the storage, then go about the installation process. When it gets to profile configuration, have the server's name as wazuh-siem and set a password for it and wait for it to get done installing. Make sure check SSH part as well.    
+Then sign in, then through WSL ssh in and install Wazuh:    
+First run sudo -i to get into root  
+Then run apt update && apt install -y curl nano and wait for it to finish, then create the folder for it by typing mkdir /root/wazuh-install then cd into it, then run the two curl commands
+curl -s0 https://packages.wazuh.com/4.7/wazuh-install.sh 
+curl -s0 https://packages.wazuh.com/4.7/config.yml  
+Then to verify run ls:  
+![LS](./images/ls.png)  
+After verifying open config.yml by running nano config.yml: 
+![Node](./images/node.png)  
+Change the ip for each to 10.0.10.10 and save the config
