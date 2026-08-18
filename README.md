@@ -181,4 +181,12 @@ Then to verify run ls:
 ![LS](./images/ls.png)  
 After verifying open config.yml by running nano config.yml: 
 ![Node](./images/node.png)  
-Change the ip for each to 10.0.10.10 and save the config
+Change the ip for each to 10.0.10.10 and save the config and run bash wazuh-install.sh -a and wait for it to finish or 5-20 minutes.    
+After installation, get the user and password and type the address of the VM into a browser and click on the advanced option on the warning page and get to Wazuh login:    
+![Wazuh](./images/wazuh.png)    
+The wazuh-dashboard-recovery.md file above is a good source for getting Wazuh up with errors. After logging in: 
+![Wazuh1](./images/wazuh1.png)  
+But whenever moving to different places, it seems that the same timeout error occurs, the wazuh-dashboard-backend-timeout-resolution.md file above is a good source.    
+Now check Server Management -> Status to see if its working:    
+![Working](./images/working.png)    
+
