@@ -137,4 +137,21 @@ Then click on Services and notice that Suricata appears in it:
 ![Suricata](./images/suricata.png)  
 Click on it and go to Global Settings page: 
 ![Global](./images/global.png)  
+Check the Install ETOpen Emerging Threats rules, Install Snort GPLv2 Community Rules, Install Feodo Tracker Botnet C2 IP rules and Install ABUSE.ch SSL Blacklist rules and set the updates interval to 12 hours. Then hit save and go to the updates tab and hit update rule set and wait a few seconds.   
+Thn go to Interfaces tab and add the interfaces by clicking add for the first one see this screen:  
+![Interface](./images/interface.png)    
+The first one will be the WAN so enable it and check send alerts to system log with the log facility being SYSLOG and Log Priority to ALERT and hit save.   
+After saving go back to Suricata and click on add once again, enable it and set the interface to SERVERS with a description of SERVERS IPS with log facility and log priority same as above, have block offenders checked and kill states enabled and hit save. 
+Then add the third one for DMZ with a description of DMZ Kali Monitor, leave block offenders unchecked and send alerts to system log checked with it being the same as SYSLOG and Log Priority set to ALERT, then hit save. Then start all three and check for the green mark:  
+![Green](./images/green.png)    
+For ntopng, click on Diagnostics and click on ntopng Settings and this screen:  
+![NTO1](./images/nto1.png)  
+Check enable ntopng, set a strong admin password, for monitoring options Control + C for all except WAN and hit save. Then click the access ntopng option:  
+![Option1](./images/option1.png)    
+After clicking on it, the login will pop up:    
+![Login](./images/login.png)    
+After logging in:
+![Map](./images/map.webp)   
+![Screen1](./images/screen1.png)    
 
+# Wazuh
