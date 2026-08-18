@@ -152,6 +152,18 @@ After clicking on it, the login will pop up:
 ![Login](./images/login.png)    
 After logging in:
 ![Map](./images/map.webp)   
-![Screen1](./images/screen1.png)    
+![Screen1](./images/screen1.png)  
+From watching the after login screen, you can watch the data move in real time and see what is going on in the network  
+Before configuring pfBlockerNG go to Firewall -> Virtual IPs and click on add:  
+![IP](./images/ip.png)  
+Check IP Alias, change the interface to Localhost, set the address to 127.0.0.1 /32 with a description of pfBlockerNG VIP, save it and apply changes, then go to Firewall -> pfBlockerNG and see the setup screen:  
+![Setup](./images/setup.png)    
+On Step 2 have both Inbound and Outbound Firewall Interfaces be WAN and hit next and get to DNSBL config:   
+![Config](./images/config.png)  
+Select the dropdown for the first option and have it the same as the alias and hit next and hit finish and wait for the install:    
+![Work](./images/work.png)  
+From looking over this part alone:  
+![Look](./images/look.png)  
+Shows that over 17,000 IPs already have been blocked with the firewall enabled
 
 # Wazuh
