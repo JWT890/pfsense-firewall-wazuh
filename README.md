@@ -199,3 +199,7 @@ Then run sudo ss -lunp | grep ':514' to verify its listening:
 ![Listen](./images/listen.png)  
 Then go to the pfsense site and go to Status -> System Logs and go over to settings:    
 ![Settings](./images/settings.png)  
+Scroll down and click on enable remote logging and set the source address to LAN, remote log server to 192.168.56.119:514 and others blank with all logs to everything: 
+![Setup1](./images/setup1.png)  
+Then hit save and it will save the setup.   
+
