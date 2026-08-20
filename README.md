@@ -189,4 +189,13 @@ The wazuh-dashboard-recovery.md file above is a good source for getting Wazuh up
 But whenever moving to different places, it seems that the same timeout error occurs, the wazuh-dashboard-backend-timeout-resolution.md file above is a good source.    
 Now check Server Management -> Status to see if its working:    
 ![Working](./images/working.png)    
-
+Then in command line type sudo nano /var/ossec/etc/ossec.conf:  
+![Config1](./images/config1.png) 
+And in in the ossec_config section: 
+![Remote](./images/remote.png)  
+Then delete the second ossec.conf section below it and to verify run sudo nano xmllint --noout /var/ossec/etc/ossec.conf to verify the xml. 
+Then restart by running sudo systemctl restart wazuh-manager, wait a few seconds and run sudo systemctl status wazuh-manager --no-pager to verify all status are running.   
+Then run sudo ss -lunp | grep ':514' to verify its listening:   
+![Listen](./images/listen.png)  
+Then go to the pfsense site and go to Status -> System Logs and go over to settings:    
+![Settings](./images/settings.png)  
