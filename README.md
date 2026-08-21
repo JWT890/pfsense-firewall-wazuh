@@ -202,4 +202,10 @@ Then go to the pfsense site and go to Status -> System Logs and go over to setti
 Scroll down and click on enable remote logging and set the source address to LAN, remote log server to 192.168.56.119:514 and others blank with all logs to everything: 
 ![Setup1](./images/setup1.png)  
 Then hit save and it will save the setup.   
-
+Then to test if the logs are flowing in the Wazuh side, type sudo tail -f /var/ossec/logs/archives/archives.log and ping in pfsense to generate some traffic but in the Wazuh side shows not much.  
+Then type sudo ss -lunp | grep ':514' and sudo ufw status to check the status of the ufw firewall and it shows listening status and ufw is disabled but the listening status is sending from the LAN. Then type sudo tcpdump -i any udp port 514 -n for udp traffic and view the udp log for more.  
+Then run sudo tail -f /var/ossec/logs/archives/archives.log and notice no output, so run sudo nano /var/ossec/etc/ossec.conf and look for logall and change both logall to yes to enable the arhive logging. Then restart by typing sudo xmllint --noout /var/ossec/etc/ossec.conf and sudo systemctl restart wazuh-manager. Then sudo ls -lh /var/ossec/logs/archives/ and see that the directory exists with data in it. Run sudo tail -f /var/ossec/logs/archives/archive.log to see this:   
+![Log](./images/log.webp)   
+Wazuh is logging data and looking at a couple lines like starting rootcheck scan and df -P filesystem output is active means its fully operational. Go to the Wazuh web site and go to Threat Hunting:  
+![Result](./images/result.webp) 
+And see the rootcheck alerts meaning its fully operational. 
