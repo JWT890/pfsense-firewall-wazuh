@@ -228,4 +228,19 @@ sudo systemctl enable wazuh-agent
 sudo systemctl start wazuh-agent and    
 sudo systemctl status wazuh-agent --no-pager:   
 ![Status](./images/status.png)  
+Then go to the Agents Summary tab in the Wazuh site:    
+![Site](./images/site.png)  
+Then start the Sysmon for Linux installation by downloading the Microsoft repo package on the endpoint VM: 
+wget -q https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb   
+sudo dpkg -i packages-microsoft-prod.deb    
+sudo apt update and then sudo apt install sysmonforlinux -y and get it installed.   
+Then type sudo nano /etc/sysmon-config.xml and type the config in it:   
+![Sysmon](./images/sysmon.png)  
+Then save it and run sudo systemctl -accepteula -i /etc/sysmon-config.xml, then sudo systemctl enable sysmon, and sudo systemctl start sysmon, then type sudo nano /var/ossec/etc/ossec.conf and add these in there:    
+![LocalFile](./images/localfile.png)    
+Then verify no xml errors with sudo xmllint --noout /var/ossec/etc/ossec.conf, then restart the wazuh-agent by running sudo systemctl restart wazuh-agent.  
+Next run for i in {1..6}; do ssh -o StrictHostKeyChecking=no wronguser@localhost 2>/dev/null; done and say yes to simulate a test attack for brute force and type a random password, then after a few seconds check the Wazuh VM site:  
+![Test](./images/test.png)  
+Logs show an attempt to login from sshd for a non-existent user, failed user login, from the endpoint-server agent with the timestamp of today, as of this writing, August 21, 2026.
 
+# OpenVPN
