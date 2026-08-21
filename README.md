@@ -209,3 +209,23 @@ Then run sudo tail -f /var/ossec/logs/archives/archives.log and notice no output
 Wazuh is logging data and looking at a couple lines like starting rootcheck scan and df -P filesystem output is active means its fully operational. Go to the Wazuh web site and go to Threat Hunting:  
 ![Result](./images/result.webp) 
 And see the rootcheck alerts meaning its fully operational. 
+Then go to Agent management and click on Summary and see this screen:   
+![Agent](./images/agent.png)    
+And click on Deploy new agent:  
+![Agent1](./images/agent1.png)  
+Select the DEB amd64 option with the server address set to 192.168.56.119 and name it endpoint-server. 
+Before continuing create a endpoint VM and name it servers-endpoint, 2 GB of RAM, 20 GB of Space, network adapters like the others and an Ubuntu OS and create the VM with OpenSSH and just standard utilties.  
+If running from the Wazuh site: wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.14.7-1_amd64.deb, pops up with a 403 forbidden error run: 
+curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | sudo gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/wazuh.gpg --import && sudo chmod 644 /usr/share/keyrings/wazuh.gpg. Which will download the GPG key and create the folder and permissions for it: 
+![Import](./images/import.png)  
+Then run echo "deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main" | sudo tee /etc/apt/sources.list.d/wazuh.list. Which will create the signed by distinction for the key and append it to the wazuh.list. Then run sudo apt update to update and then run:  
+sudo WAZUH_MANAGER='192.168.56.119' WAZUH_AGENT_NAME='endpoint-server' apt install wazuh-agent -y which says unable to locate wazuh-agent so run:   
+![Commands](./images/commands.png)  
+With the last command from the photo helps with installing the IP manager set and the wazuh agent.  
+Then start the agent by running:    
+sudo systemctl daemon-reload    
+sudo systemctl enable wazuh-agent   
+sudo systemctl start wazuh-agent and    
+sudo systemctl status wazuh-agent --no-pager:   
+![Status](./images/status.png)  
+
