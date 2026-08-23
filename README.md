@@ -260,3 +260,23 @@ Then go to System -> Package Manager -> Available Packages and search for OpenVP
 And see the Lab vpn there but before exporting go to System -> User Manager -> Add and create the vpnuser account with a password, then scroll down and click on click to create a new certificate with a descriptive name of vpnuser-cert, CA of Lab-CA, and key length of 2048 and a lifetime of 3650 and create the user and cert. Then go back to Client Export and see the OpenVPN Clients with a option   
 ![Client](./images/client.png)  
 For the one to download, click on most clients under Inline Configuration which will download a .ovpn file. Then go download and install or open OpenVPN on the host Windows machine from here: https://openvpn.net/community/  
+Then install it and open up the system tray on Windows by clicking the up arrow on the bottom screen and right click the icon and hover over import and click on import file for this to pop up:    
+![Download](./images/download.png)  
+Click on it to open it and then go back to the icon and click on connect but notice this:   
+![Error](./images/error.webp)   
+It says stuck on connecting but not receiving back since the remote address says 192.168.100.3:1194 instead of 10.0.x.x. The 192.168.100.3 address is inside the tunnel. Open up .ovpn file in Notepad and see this line:   
+![Address](./images/address.png)    
+Change the line to the WAN IP to 10.10.0.x and reconnect but lets move this to the endpointserver VM.   
+On the EndpointServer VM type sudo apt install openvpn -y and on the host type scp C:\path\to\config.opvn jon@192.168.56.121:/home/jon/ 
+![SCP](./images/scp.png)    
+Then type sudo openvpn --config /home/jon/lab-firewall-UDP4-1194-vpnuser-config.ovpn and enter in the auth username, vpnuser, and press enter   
+![Error1](./images/error1.webp) 
+Go to the file and change it from the placeholder to 192.168.100.3 and save it and try again    
+![Error2](./images/error2.png)  
+Which now means its reaching the UDP link but TLS is failing and running grep -i tls on the file shows that the TLS key isn't there:    
+![Auth](./images/auth.png)  
+Go to Servers in OpenVPN and click on edit and go the TLS key section and copy it put the info in between tls-auth section but looking at it, it appears to be already there. Another thing to check would be the Firewall rules for WAN and system logs:   
+![Logs](./images/log.webp)  
+![WAN1](./images/wan1.png)  
+Logs show healthy status but the rules aren't allowing 1194. Add a rule in Rules for WAN with action pass, interface of WAN, protocol of UDP, source of any, destination of WAN address, port of 1194/OpenVPN, and a description of Allow OpenVPN. Then hit apply changes and save and then click on the rule with Block private networks and edit it to turn it off:   
+![Update](./images/update.png)  
