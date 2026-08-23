@@ -280,3 +280,12 @@ Go to Servers in OpenVPN and click on edit and go the TLS key section and copy i
 ![WAN1](./images/wan1.png)  
 Logs show healthy status but the rules aren't allowing 1194. Add a rule in Rules for WAN with action pass, interface of WAN, protocol of UDP, source of any, destination of WAN address, port of 1194/OpenVPN, and a description of Allow OpenVPN. Then hit apply changes and save and then click on the rule with Block private networks and edit it to turn it off:   
 ![Update](./images/update.png)  
+THen run sudo openvpn like before in the endpointserver VM  
+![Error3](./images/error3.webp) 
+Same TLS issue as before, packets are reaching but its timing out, the System Logs in pfsense might be able to show something   
+![Logs](./images/logs.png)  
+Notice no new updates since 14:20 watermark, open up a second terminal to ssh into and run the sudo openvpn command alongside running sudo tcpdump -i any port 1194 and see the result:   
+![Output](./images/output.png)  
+Notice that the packets are all saying outbound with nothing from pfsense since its sending UDP packets to 192.168.100:1194 since pfsense can't see anything, so this is likely a routing issue on the endpoint server VM.  
+Go to the VM settings for endpointserver and add a third adapter for NAT Network with lab-vm on it and then boot the endpoint VM back up and type ip a to verify the new network.   
+
