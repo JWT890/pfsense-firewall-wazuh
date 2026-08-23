@@ -244,3 +244,19 @@ Next run for i in {1..6}; do ssh -o StrictHostKeyChecking=no wronguser@localhost
 Logs show an attempt to login from sshd for a non-existent user, failed user login, from the endpoint-server agent with the timestamp of today, as of this writing, August 21, 2026.
 
 # OpenVPN
+Next is to establish remote connections into the VLAN For SERVERS. To do so, on the pfSense site go VPN -> OpenVPN -> Wizards and see this screen:  
+![Wizard](./images/wizard.png)  
+Select Local Access and hit next and see the Certificate Autority creation screen:  
+![CA](./images/ca.png)  
+For the CA, have the description name be Lab-CA, country code of US, the state, city, organization of Lab, email, key length of 2048 and a lifetime of 3650, then click add new CA and then click on add new certificate.   
+![Server1](./images/server1.png)    
+Name it Lab-fw-server with a key length of 2048 bit and a lifetime of 3650 and hit create new certificate and reach the OpenVPN screen: 
+![OpenVPN](./images/openvpn.png)    
+Have the description be Lab VPN with it set to protocol UDP on IPv4 only, interface of WAN, and a local port of 1194, then scroll down to Cryptographic settings. Have TLS Auth and Generate enabled and keep the digest algorithm as SHA256. Scroll down to Tunnel Settings. Have the IPv4 Tunnel Network be 192.168.100.0/24, IPv4 Local Network be 10.0.20.0/24, set concurrent connections to 10 for clients and disable compression. Scroll and down hit next to get to Firewall Rules 
+![Firewall1](./images/firewall1.png)    
+Enable both options of firewall rule and OpenVPN rule and hit next and click finish on the configuration.   
+Then go to System -> Package Manager -> Available Packages and search for OpenVPN-Client-Export and click install and wait a few seconds. Then go back to OpenVPN and click on Client export:   
+![Export](./images/export.png)  
+And see the Lab vpn there but before exporting go to System -> User Manager -> Add and create the vpnuser account with a password, then scroll down and click on click to create a new certificate with a descriptive name of vpnuser-cert, CA of Lab-CA, and key length of 2048 and a lifetime of 3650 and create the user and cert. Then go back to Client Export and see the OpenVPN Clients with a option   
+![Client](./images/client.png)  
+For the one to download, click on most clients under Inline Configuration which will download a .ovpn file. Then go download and install or open OpenVPN on the host Windows machine from here: https://openvpn.net/community/  
