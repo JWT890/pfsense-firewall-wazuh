@@ -312,4 +312,23 @@ Both pings worked and to make it persistent type sudo nano /etc/network/interfac
 Then save it and go to pfSense and add this rule:   
 ![Add2](./images/add2.png)  
 Then save and apply changes.    
+Back in Kali run the first thing being network recon, nmap -sV -O 10.0.20.0/24 to get a picutre of Servers like so:    
+![Global](./images/g.png)   
+And shows a great entry point and from this shows such as pfsense OS, the ports and the interface, to determine the IPs on the host only change it to nmap -sV -O 192.168.56.0/24 and wait a few seconds for it to finish:  
+![T](./images/t.webp)   
+![T1](./images/t1.webp) 
+![T2](./images/t2.webp) 
+![T3](./images/t3.webp) 
+Results found were the .1 host, .2 is the pfSense LAN with open ports of 53, 80, 443, and 3000, .100 is unknown, .119 is the Wazuh VM with open ports of 22 and 443 or SSH and HTTPS, .121 is the Endpoint VM with port of 22, and .150 being the Kali VM.  
+Now its time to sim some attacks, start by brute force SSH attack by running hydra with rockyou.txt, start by finding by running ls -lh /usr/share/wordlists/ and should show as .gz which means it needs to be unzipped by running gunzip, run sudo gunzip /usr/share/wordlists/rockyou.txt.gz and if hydra errors, run Medusa. Command is medusa -u jon -P /usr/share/wordlists/rockyou.txt -h 192.168.56.121 -M ssh -t 4 and wait a couple, running on endpointserver VM will fire in Wazuh: 
+Additionally also run curl https://testmyids.com and nmap -sV -sC -A 192.168.56.121:    
+![Res1](./images/res1.png)  
+And check Suricata in pfSense:  
+![Suricata1](./images/suricata1.png)    
+And check the Wazuh site in Events and see it populated with a lot of alerts:   
+![Alert](./images/alert.png)    
+![Alert1](./images/alert1.png)  
+![Alert2](./images/alert2.png)  
+![Alert3](./images/alert3.png)  
+The alerts from the three ran were able to detect a brute force from looking over it with the auth failures. Time for more attacks: 
 
