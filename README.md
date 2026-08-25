@@ -288,4 +288,28 @@ Notice no new updates since 14:20 watermark, open up a second terminal to ssh in
 ![Output](./images/output.png)  
 Notice that the packets are all saying outbound with nothing from pfsense since its sending UDP packets to 192.168.100:1194 since pfsense can't see anything, so this is likely a routing issue on the endpoint server VM.  
 Go to the VM settings for endpointserver and add a third adapter for NAT Network with lab-vm on it and then boot the endpoint VM back up and type ip a to verify the new network.   
+After verifying the new one run sudo openvpn again 
+![Complete](./images/complete.png)  
+THe initialization complete means the VPN is up, connected to pfSense, and the tunnel is created, to test run ip a show tun0 and ping 10.0.20.1 to see: 
+![Ran](./images/ran.png)    
+And if this occurs from timeout:    
+![Res](./images/res.png)    
+*The TLS failure here is from the NAT table stuff*
+Add this in the .ovpn file: 
+![Add](./images/add.png)    
+
+Next is time for live tests
+
+# Kali Attacks
+Kali VM download: https://www.kali.org/get-kali/#kali-installer-images  
+Video Memory of 4096, 50 GB of space, adapter 1 set to first adapter like the rest, and second adapter set to NAT and then wait for it to bootup. Once bootup, type ip a and if eth0 doesn't show run:  
+sudo ip addr add 192.168.56.120/24 dev eth0
+sudo ip link set eth0 up
+sudo ip route add default via 192.168.56.2 and then ping pfsense LAN and SERVERS like so:   
+![Ping1](./images/ping1.png)    
+Both pings worked and to make it persistent type sudo nano /etc/network/interfaces and add this:    
+![Add1](./images/add1.png)  
+Then save it and go to pfSense and add this rule:   
+![Add2](./images/add2.png)  
+Then save and apply changes.    
 
