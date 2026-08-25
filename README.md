@@ -330,5 +330,21 @@ And check the Wazuh site in Events and see it populated with a lot of alerts:
 ![Alert1](./images/alert1.png)  
 ![Alert2](./images/alert2.png)  
 ![Alert3](./images/alert3.png)  
-The alerts from the three ran were able to detect a brute force from looking over it with the auth failures. Time for more attacks: 
+The alerts from the three ran were able to detect a brute force from looking over it with the auth failures. Now lets run a more aggressive Nmap scan:  
+nmap -sV -sC -A -O -p- 192.168.56.121 -oN full_scan.txt. -sV probes for open ports for version info, -sC scans for certain things, -A detects for operating systems and versions, -O scans for decoys, -p- is for scanning ports, -oN outputs the report into a file.   
+![Agg](./images/agg.png)    
+Then run a web server vulnerability scan by using nikto, so nikto -h http://192.168.56.121 -output nikto_results.txt and see the results:   
+![Nikto](./images/nikto.png)    
+From the nikto scan, real vulnerabilities were found such as strict-transport-security and a few others and can be seen in the Wazuh alerts:    
+![Alert4](./images/alert4.png)  
+Mainly for apache install in the endpointserver, then run using gobuster:   
+gobuster dir -u http://192.168.56.121 -w /usr/share/wordlists/dirb/common.txt -o gobuster_results.txt for the result:   
+![Gobuster](./images/gobuster.png)  
+This command uses gobuster as a directory brute force attack on the target by using the dir command to scan for hidden directories or files and output to the .txt file and to get apache to appear in Wazuh add in ossec.conf on the endpointserver:   
+![Apache](./images/apache.png)  
+After running gobuster again:   
+![Code](./images/code.png)  
+Next run sqlmap -u "http://192.168.56.121/index.html" --batch --crawl=3 --level=3 and wfuzz -c -z file./usr/share/wordlists/dirb/common.txt --hc 404 http://192.168.56.121/FUZZ.    
+![Attack](./images/attack.png)  
+For sqlmap, --batch doesn't ask for input and will run 3 times, crawl will start at the root URL of the target URL and test for sql flaws, with --level being how thorough the test will be with 3 testing for user-agent and headers. For wfuzz acts as a directory/file discovery scan with -c displays the ouptut in color, -z file says where the values are, --hc 404 will hide responses with code 404 while /FUZZ tests using a wordlist to determine if certain paths exist.    
 
