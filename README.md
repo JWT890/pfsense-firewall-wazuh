@@ -1,5 +1,9 @@
 # pfsense-firewall-wazuh
 
+# Summary
+
+This project demonstrates the design and function of a segmented home lab network built in VirtualBox, with a pfSense firewall and 5 isolated VLANs, a Wazuh SIEM with endpoint agents and Sysmon, and a monitoring stack of Suricata, ntopng and pfBlockerNG. *In progress*
+
 # VirtualBox Network Setup
 In VirtualBox, go to file and select on Host Network Manager and click on create which should create vboxnet0 with a IP of 192.168.56.1 and turn off DHCP. Then click on preferences and select network -> NAT Network and click on create. 
 Name the NAT Network to lab-wan and assign it the ip of 10.10.0.0/24 and click ok.  
@@ -80,6 +84,12 @@ SERVERS should be 10.0.20.1/24
 GUEST should be 10.0.30.1/24
 IOT should be 10.0.40.1/24  
 DMZ should be 10.0.50.1/24
+| VLAN | Name | Subnet | Purpose |  
+| 10   | MGMT | 10.0.10.1/24 | Admin access only   |    
+| 20   | SERVERS | 10.0.20.1/24 | Target endpoints |    
+| 30   | GUEST   | 10.0.30.1/24 | Internet only    |    
+| 40   | IOT     | 10.0.40.1/24 | Isolated         |    
+| 50   | DMZ     | 10.0.50.1/24 | Kali Attack zone |    
 Then head towards Services -> DHCP Server and see this screen:  
 ![Server](./images/server.png)  
 Click on the MGMT tab and enable the interface and for address pool range for MGMT do 10.0.20.100 - 10.0.0.20.199 and hit save, then repeat for the other respective ones and then hit apply changes.   
@@ -300,7 +310,7 @@ Add this in the .ovpn file:
 
 Next is time for live tests
 
-# Kali Attacks
+# Attack Simulation & Detection
 Kali VM download: https://www.kali.org/get-kali/#kali-installer-images  
 Video Memory of 4096, 50 GB of space, adapter 1 set to first adapter like the rest, and second adapter set to NAT and then wait for it to bootup. Once bootup, type ip a and if eth0 doesn't show run:  
 sudo ip addr add 192.168.56.120/24 dev eth0
