@@ -347,4 +347,31 @@ After running gobuster again:
 Next run sqlmap -u "http://192.168.56.121/index.html" --batch --crawl=3 --level=3 and wfuzz -c -z file./usr/share/wordlists/dirb/common.txt --hc 404 http://192.168.56.121/FUZZ.    
 ![Attack](./images/attack.png)  
 For sqlmap, --batch doesn't ask for input and will run 3 times, crawl will start at the root URL of the target URL and test for sql flaws, with --level being how thorough the test will be with 3 testing for user-agent and headers. For wfuzz acts as a directory/file discovery scan with -c displays the ouptut in color, -z file says where the values are, --hc 404 will hide responses with code 404 while /FUZZ tests using a wordlist to determine if certain paths exist.    
+![Res2](./images/res2.png)  
+And from checking MITRE ATT&CK: 
+![Mitre](./images/mitre.png)    
+From the MITRE image, several have been mapped, such as t1595.002 for recon, T1055 for Defense Evasion and Priv Escalation. Can also be seen in the Framework section:  
+![Technique](./images/technique.png)    
+And back in the Kali VM, run Metasploit by running msfconsole to get it up: 
+![Meta](./images/meta.png)  
+Then to check if web scan is there, run search auxillary/scanner/http/http_version like so: 
+![Search](./images/search.png)  
+Then type use auxiliary/scanner/http/http_version to get into using the tool and type set RHOSTS 192.168.56.121 and hit run.    
+![Run](./images/run.png)    
+For another web scan with Metasploit run use auxiliary/scanner/http/files_dir, then type set RHOSTS 192.168.56.121 and hit run: 
+![Run1](./images/run1.png)  
+For some more interesting attacks, first with SSH user enum with metasploit by running use auxiliary/scanner/ssh/ssh_enumusers, then set RHOSTS 192.168.56.121, then set USER_FILE /usr/share/wordlists/metasploit/unix_users.txt, then set THREADS 5, then run:    
+![Run2](./images/run2.png)  
+![Attack1](./images/attack1.png)    
+Then run a hydra brute force attack by typing hydra -L /usr/share/wordlists/metasploit/unix_users.txt -P /usr/share/wordlists/rockyou.txt 192.168.56.121 ssh -t 8 -V -f and see it attempt to login through different fake users and light up with alerts.  
+To scan for CVEs, run nmap -sV --script vuln 192.168.56.121 -oN vuln_scan.txt and for the result:   
+![Vulner](./images/vulner.png)  
+![Vulner1](./images/vulner1.png)    
+To gather more info about systems over SMB and NetBIOS run enum4linux -a 192.168.56.121 
+![Enum](./images/enum.png)  
+Which doesn't show much.    
+To search for exploits using searchsploit run searchsploit Apache 2.4.66:   
+![Apache1](./images/apache1.png)    
+For a man in the middle attack do a ARP spoof by running sudo arpspoof -i eth0 -t 192.168.56.121 192.168.56.2:  
+![Arp](./images/arp.png)    
 
