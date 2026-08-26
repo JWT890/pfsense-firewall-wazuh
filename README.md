@@ -84,12 +84,12 @@ SERVERS should be 10.0.20.1/24
 GUEST should be 10.0.30.1/24
 IOT should be 10.0.40.1/24  
 DMZ should be 10.0.50.1/24  
-| VLAN | Name | Subnet | Purpose |  
-| 10   | MGMT | 10.0.10.1/24 | Admin access only   |    
-| 20   | SERVERS | 10.0.20.1/24 | Target endpoints |    
-| 30   | GUEST   | 10.0.30.1/24 | Internet only    |    
-| 40   | IOT     | 10.0.40.1/24 | Isolated         |    
-| 50   | DMZ     | 10.0.50.1/24 | Kali Attack zone |    
+VLAN, Name, Subnet, Purpose 
+10, MGMT, 10.0.10.1/24, Admin access only       
+20, SERVERS, 10.0.20.1/24, Target endpoints     
+30,GUEST,10.0.30.1/24,Internet only     
+40,IOT,10.0.40.1/24,Isolated        
+50,DMZ,10.0.50.1/24, Kali Attack zone       
 Then head towards Services -> DHCP Server and see this screen:  
 ![Server](./images/server.png)  
 Click on the MGMT tab and enable the interface and for address pool range for MGMT do 10.0.20.100 - 10.0.0.20.199 and hit save, then repeat for the other respective ones and then hit apply changes.   
@@ -395,6 +395,7 @@ Since I was running a Wireshark packet capture, it collected a whole lot of stuf
 Along with the data I got in the extracted_data.csv and ip_counts.csv shows the interesting data acquired through running Wireshark through the last set of attacks
 
 # Diagram
+![Diagram](./images/Segemented%20Network%20Security%20SIEM%20Diagram.drawio%20(2).png)  
 
 # Report
 
