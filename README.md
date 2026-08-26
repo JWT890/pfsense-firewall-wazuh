@@ -380,5 +380,13 @@ And MITRE ATT&CK one:
 ![Dashboard1](./images/dashboard1.png)  
 And checking the Vulnerability Detection dashboard: 
 ![Dashboard2](./images/dashboard2.png)  
-Since I was running a Wireshark packet capture, it collected a whole lot of stuff as well, including in the top to see
+Since I was running a Wireshark packet capture, it collected a whole lot of stuff as well, including in the top to see and after running it in the Wireshark pcap analyzer I made for the count over time:  
+![Packet](./images/packet.png)  
+Along with the data I got in the extracted_data.csv and ip_counts.csv shows the interesting data acquired through running Wireshark through the last set of attacks
+
+# Diagram
+
+# Report
+
+See above to download/read
 
