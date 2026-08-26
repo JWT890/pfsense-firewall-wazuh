@@ -83,7 +83,7 @@ Enable the interface, change the description to MGMT, change the dropdown for IP
 SERVERS should be 10.0.20.1/24  
 GUEST should be 10.0.30.1/24
 IOT should be 10.0.40.1/24  
-DMZ should be 10.0.50.1/24
+DMZ should be 10.0.50.1/24  
 | VLAN | Name | Subnet | Purpose |  
 | 10   | MGMT | 10.0.10.1/24 | Admin access only   |    
 | 20   | SERVERS | 10.0.20.1/24 | Target endpoints |    
