@@ -374,4 +374,11 @@ To search for exploits using searchsploit run searchsploit Apache 2.4.66:
 ![Apache1](./images/apache1.png)    
 For a man in the middle attack do a ARP spoof by running sudo arpspoof -i eth0 -t 192.168.56.121 192.168.56.2:  
 ![Arp](./images/arp.png)    
+From doing our attacks, this is the Threat Hunting dashboard:   
+![Dashboard](./images/dashboard.png)    
+And MITRE ATT&CK one:   
+![Dashboard1](./images/dashboard1.png)  
+And checking the Vulnerability Detection dashboard: 
+![Dashboard2](./images/dashboard2.png)  
+Since I was running a Wireshark packet capture, it collected a whole lot of stuff as well, including in the top to see
 
