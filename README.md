@@ -2,7 +2,7 @@
 
 # Summary
 
-This project demonstrates the design and function of a segmented home lab network built in VirtualBox, with a pfSense firewall and 5 isolated VLANs, a Wazuh SIEM with endpoint agents and Sysmon, and a monitoring stack of Suricata, ntopng and pfBlockerNG. *In progress*
+This project demonstrates the design and function of a segmented home lab network built in VirtualBox, with a pfSense firewall and 5 isolated VLANs, a Wazuh SIEM with endpoint agents and Sysmon, and a monitoring stack of Suricata, ntopng, and pfBlockerNG. This lab was used to simulate realistic attack scenarios using Kali Linux tools such as Medusa, Nmap, Nikto, Gobuster, and Metasploit, generating detectable events across both network and host layers that were logged with Wazuh and mapped to MITRE ATT&CK framework. Traffic was captured with Wireshark and analyzed alongside Suricata and Wazuh security events and timeline, demonstrating end-to-end visibility from attacker action through detection and looking. This was built from scratch, with assistance from Claude, to develop hands-on skills in firewall rule management, SIEM configuration, intrusion detection, threat hunting, and further knowledge in network segmentation. 
 
 # VirtualBox Network Setup
 In VirtualBox, go to file and select on Host Network Manager and click on create which should create vboxnet0 with a IP of 192.168.56.1 and turn off DHCP. Then click on preferences and select network -> NAT Network and click on create. 
